@@ -1,12 +1,44 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Page</title>
+    <title>NVP Devil Profile</title>
+    <link rel="icon" href="assets/images/nvpdevil.png">
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-    <h1>Chào mừng đến với trang cá nhân của tôi!</h1>
-    <p>Đây là trang profile được host trên GitHub Pages.</p>
+    <div class="overlay" id="audio-overlay">
+        <p>Click anywhere to start audio and enter the profile!</p>
+    </div>
+    <div class="container">
+        <div class="profile-card">
+            <img src="assets/images/nvpdevil.png" alt="NVP Devil" class="avatar">
+            <h1>NVP Devil</h1>
+            <p class="tagline">Call me Pii</p>
+            <div class="details-container">
+                <div class="detail-block">Việt Nam</div>
+                <div class="detail-block">GMT+7</div>
+                <div class="detail-block">Nguyễn Văn Phi</div>
+            </div>
+            <div class="social-icons">
+                <a href="#" data-tooltip="nvpdevil" data-link="https://www.facebook.com/nvpdevil"><img src="https://img.icons8.com/ios-filled/50/000000/facebook.png" alt="Facebook"></a>
+                <a href="#" data-tooltip="nvpdevil" data-link="https://www.instagram.com/nvpdevil/"><img src="https://img.icons8.com/ios-filled/50/000000/instagram.png" alt="Instagram"></a>
+                <a href="#" data-tooltip="NVPDevil" data-link="https://github.com/NVPDevil"><img src="https://img.icons8.com/ios-filled/50/000000/github.png" alt="GitHub"></a>
+                <a href="#" data-tooltip="@nvpdevil2005" data-link="https://www.youtube.com/@nvpdevil2005"><img src="https://img.icons8.com/ios-filled/50/000000/youtube.png" alt="YouTube"></a>
+                <a href="#" data-tooltip="Kiều Nga#2005"><img src="https://img.icons8.com/ios-filled/50/000000/riot-games.png" alt="Riot Games"></a>
+                <a href="#" data-tooltip="Kiều Nga#2005"><img src="https://img.icons8.com/ios-filled/50/000000/league-of-legends.png" alt="League of Legends"></a>
+                <a href="#" data-tooltip="@nvpdevil"><img src="https://img.icons8.com/ios-filled/50/000000/discord.png" alt="Discord"></a>
+                <a href="#" data-tooltip="nvpdevil" data-link="https://www.tiktok.com/@nvpdevil"><img src="https://img.icons8.com/ios-filled/50/000000/tiktok.png" alt="Facebook"></a>
+            </div>
+        </div>
+    </div>
+
+    <audio id="background-audio" loop>
+        <source src="assets/audio/Hào.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script src="assets/js/script.js"></script>
 </body>
 </html>

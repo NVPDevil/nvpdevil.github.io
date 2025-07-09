@@ -1,0 +1,225 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Giới hạn chiều cao cố định */
+    width: 100%;
+    background: url('https://cdn.discordapp.com/attachments/1109498568655519926/1172793009021145108/HN_Background.png?ex=686ebc5a&is=686d6ada&hm=7d78bfd780518d1d470966972e63cd9c57968ae07cf4e7ba07ecc2de17dba1ef&') no-repeat center center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    overflow: hidden; /* Ngăn cuộn */
+    position: relative;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.container {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Ngăn cuộn */
+}
+
+.profile-card {
+    background: rgba(0, 150, 136, 0.9);
+    padding: 2rem;
+    border-radius: 20px;
+    animation: float 4s ease-in-out infinite;
+    width: fit-content;
+    min-width: 280px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.avatar {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+    animation: rotate 8s linear infinite;
+    object-fit: cover;
+}
+
+h1 {
+    color: #fff;
+    margin: 1rem 0;
+    font-size: 2.2rem;
+}
+
+.tagline {
+    color: #fff;
+    font-style: italic;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.details-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.detail-block {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 0.9rem;
+    min-width: 90px;
+    flex: 1 1 auto;
+    text-align: center;
+    word-wrap: break-word;
+    max-width: 30%;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.social-icons a {
+    position: relative;
+    text-decoration: none;
+}
+
+.social-icons img {
+    width: 35px;
+    height: 35px;
+    filter: brightness(0) invert(1);
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons img:hover {
+    transform: scale(1.2);
+    filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(255, 255, 255, 0.7));
+}
+
+/* Tooltip đẹp hơn */
+[data-tooltip] {
+    position: relative;
+}
+
+[data-tooltip]:after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 10;
+    margin-bottom: 0.4rem;
+}
+
+[data-tooltip]:hover:after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(-5px);
+}
+
+/* Hiệu ứng tuyết rơi chi tiết hơn, giới hạn chiều cao */
+.snowflake {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: radial-gradient(circle, #ffffff, #e0e0e0, #c0c0c0, #a0a0a0);
+    border-radius: 50% 60% 50% 60% / 50% 50% 50% 50%;
+    opacity: 0.7;
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
+    animation: detailedSnowFall linear infinite;
+    /* Giới hạn chiều cao để tránh cuộn */
+    max-height: 100vh;
+}
+
+@keyframes detailedSnowFall {
+    0% { transform: translateY(-100vh) rotate(0deg) scale(0.7); opacity: 0.7; }
+    20% { opacity: 0.9; }
+    50% { transform: translateY(40vh) rotate(180deg) scale(1.1); }
+    100% { transform: translateY(100vh) rotate(360deg) scale(0.7); opacity: 0.3; }
+}
+
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .profile-card {
+        padding: 1.5rem;
+    }
+
+    .avatar {
+        width: 100px;
+        height: 100px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .tagline {
+        font-size: 1rem;
+    }
+
+    .detail-block {
+        min-width: 80px;
+        max-width: 45%;
+        font-size: 0.8rem;
+        padding: 0.5rem 0.8rem;
+    }
+
+    .social-icons img {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .detail-block {
+        max-width: 100%;
+    }
+}
