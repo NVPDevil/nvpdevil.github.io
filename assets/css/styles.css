@@ -3,7 +3,7 @@ body {
     padding: 0;
     height: 100vh;
     width: 100%;
-    background: url('https://cdn.discordapp.com/attachments/1109498568655519926/1172793009021145108/HN_Background.png?ex=686ebc5a&is=686d6ada&hm=7d78bfd780518d1d470966972e63cd9c57968ae07cf4e7ba07ecc2de17dba1ef&') no-repeat center center;
+    background: url('https://cdn.discordapp.com/attachments/934360282615132172/1322917995454136330/411287948_765324632291582_936493720570775181_n.png?ex=686f1624&is=686dc4a4&hm=6222ea19ad49bddc1148cc3c34d238ce058bbead59229f3fe3df0c58886463d5&') no-repeat center center;
     background-size: cover;
     display: flex;
     justify-content: center;
@@ -60,16 +60,22 @@ body {
 .profile-card {
     background: linear-gradient(135deg, rgba(0, 150, 136, 0.9), rgba(0, 100, 90, 0.9));
     padding: 2.5rem;
-    border-radius: 20px;
+    border-radius: 25px;
     animation: float 4s ease-in-out infinite;
     width: fit-content;
     min-width: 280px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), 0 0 10px rgba(255, 255, 255, 0.2) inset;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 255, 255, 0.4) inset;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 0 auto;
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    border: 3px solid rgba(255, 255, 255, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), 0 0 25px rgba(255, 255, 255, 0.5) inset;
 }
 
 .avatar {
@@ -79,14 +85,22 @@ body {
     margin-bottom: 1.5rem;
     animation: rotate 8s linear infinite;
     object-fit: cover;
-    border: 4px solid rgba(255, 255, 255, 0.5);
+    border: 5px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.avatar:hover {
+    transform: rotate(360deg) scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
 }
 
 h1 {
     color: #fff;
     margin: 1rem 0;
     font-size: 2.2rem;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    animation: pulseText 2s infinite alternate;
 }
 
 .tagline {
@@ -94,7 +108,7 @@ h1 {
     font-style: italic;
     margin-bottom: 1rem;
     font-size: 1.1rem;
-    text-shadow: 0 0 3px rgba(255, 255, 255, 0.2);
+    text-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
 }
 
 .details-container {
@@ -105,6 +119,27 @@ h1 {
     flex-wrap: wrap;
 }
 
+.detail-block {
+    background: rgba(255, 255, 255, 0.25);
+    padding: 0.6rem 1rem;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 0.9rem;
+    min-width: 90px;
+    flex: 1 1 auto;
+    text-align: center;
+    word-wrap: break-word;
+    max-width: 30%;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.detail-block:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.35);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+}
 
 .social-icons {
     display: flex;
@@ -117,6 +152,7 @@ h1 {
 .social-icons a {
     position: relative;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .social-icons img {
@@ -127,8 +163,8 @@ h1 {
 }
 
 .social-icons img:hover {
-    transform: scale(1.2);
-    filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(255, 255, 255, 0.7));
+    transform: translateY(-5px); /* Hiệu ứng bay lên */
+    filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(255, 255, 255, 0.9));
 }
 
 /* Tooltip đẹp hơn */
@@ -142,11 +178,11 @@ h1 {
     bottom: 100%;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.85);
+    background: rgba(0, 0, 0, 0.9);
     color: #fff;
     padding: 0.6rem 1rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     font-size: 0.8rem;
     white-space: nowrap;
     opacity: 0;
@@ -159,7 +195,7 @@ h1 {
 [data-tooltip]:hover:after {
     opacity: 1;
     visibility: visible;
-    transform: translateX(-50%) translateY(-5px);
+    transform: translateX(-50%) translateY(-8px);
 }
 
 /* Hiệu ứng tuyết rơi chi tiết hơn, giới hạn chiều cao */
@@ -171,12 +207,13 @@ h1 {
     border-radius: 50% 60% 50% 60% / 50% 50% 50% 50%;
     opacity: 0.7;
     box-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
-    animation: detailedSnowFall linear infinite;
+    animation: detailedSnowFall 20s linear infinite;
     max-height: 100vh;
+    top: -20px; /* Bắt đầu từ đỉnh */
 }
 
 @keyframes detailedSnowFall {
-    0% { transform: translateY(-100vh) rotate(0deg) scale(0.7); opacity: 0.7; }
+    0% { transform: translateY(0) rotate(0deg) scale(0.7); opacity: 0.7; }
     20% { opacity: 0.9; }
     50% { transform: translateY(40vh) rotate(180deg) scale(1.1); }
     100% { transform: translateY(100vh) rotate(360deg) scale(0.7); opacity: 0.3; }
@@ -211,7 +248,6 @@ h1 {
     .tagline {
         font-size: 1rem;
     }
-
 
     .social-icons img {
         width: 30px;

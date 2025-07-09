@@ -2,9 +2,10 @@
 function createSnowflake() {
     const snowflake = document.createElement('div');
     snowflake.className = 'snowflake';
-    snowflake.style.left = Math.random() * 100 + 'vw';
-    snowflake.style.animationDuration = Math.random() * 15 + 10 + 's'; // 10-25s
-    snowflake.style.animationDelay = Math.random() * 3 + 's';
+    snowflake.style.left = Math.random() * 100 + 'vw'; // Vị trí ngẫu nhiên ngang
+    snowflake.style.top = '-20px'; // Bắt đầu từ đỉnh
+    snowflake.style.animationDuration = Math.random() * 20 + 15 + 's'; // 15-35s để rơi trơn tru
+    snowflake.style.animationDelay = Math.random() * 5 + 's'; // Delay ngẫu nhiên
     document.body.appendChild(snowflake);
 
     // Xóa tuyết rơi khi vượt quá chiều cao trang
@@ -20,16 +21,16 @@ function createSnowflake() {
     });
 }
 
-setInterval(createSnowflake, 400);
+setInterval(createSnowflake, 300); // Tăng tần suất để thấy rõ hơn
 
 // Xử lý click và tooltip cho social icons
 document.querySelectorAll('.social-icons a').forEach(icon => {
     icon.addEventListener('click', (e) => {
+        e.preventDefault(); // Ngăn hành vi mặc định của thẻ <a>
         const link = icon.getAttribute('data-link');
         const tooltip = icon.getAttribute('data-tooltip');
         if (link) {
             window.open(link, '_blank');
-            e.preventDefault();
         } else if (tooltip) {
             navigator.clipboard.writeText(tooltip).then(() => {
                 const copyMsg = document.createElement('div');
@@ -38,7 +39,6 @@ document.querySelectorAll('.social-icons a').forEach(icon => {
                 document.body.appendChild(copyMsg);
                 setTimeout(() => copyMsg.remove(), 1500); // Tự động biến mất sau 1.5s
             });
-            e.preventDefault();
         }
     });
 });
@@ -53,6 +53,7 @@ overlay.addEventListener('click', () => {
         console.log("Audio started successfully.");
     }).catch(error => {
         console.log("Error playing audio: ", error);
+        alert("Audio failed to play. Please check the file or refresh.");
     });
 });
 
