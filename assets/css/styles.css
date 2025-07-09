@@ -71,6 +71,7 @@ body {
     margin: 0 auto;
     border: 3px solid rgba(255, 255, 255, 0.5);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    gap: 1.5rem; /* Khoảng cách đồng đều giữa các hàng */
 }
 
 .profile-card:hover {
@@ -81,9 +82,9 @@ body {
 .avatar {
     width: 140px;
     height: 140px;
-    border-radius: 50%;
-    margin-bottom: 1.5rem;
-    animation: rotate 8s linear infinite;
+    border-radius: 50%; /* Khôi phục hình tròn */
+    margin: 0; /* Loại bỏ margin để dùng gap của profile-card */
+    animation: rotate 8s linear infinite; /* Khôi phục animation xoay */
     object-fit: cover;
     border: 5px solid rgba(255, 255, 255, 0.6);
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
@@ -97,7 +98,7 @@ body {
 
 h1 {
     color: #fff;
-    margin: 1rem 0;
+    margin: 0; /* Loại bỏ margin để dùng gap của profile-card */
     font-size: 2.2rem;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
     animation: pulseText 2s infinite alternate;
@@ -106,7 +107,7 @@ h1 {
 .tagline {
     color: #fff;
     font-style: italic;
-    margin-bottom: 1rem;
+    margin: 0; /* Loại bỏ margin để dùng gap của profile-card */
     font-size: 1.1rem;
     text-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
 }
@@ -115,7 +116,7 @@ h1 {
     display: flex;
     justify-content: center;
     gap: 1rem;
-    margin-bottom: 1.5rem;
+    margin: 0; /* Loại bỏ margin để dùng gap của profile-card */
     flex-wrap: wrap;
 }
 
@@ -141,12 +142,21 @@ h1 {
     box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
 }
 
+.custom-hr {
+    width: 80%;
+    border: 0;
+    height: 2px;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+    margin: 0; /* Loại bỏ margin để dùng gap của profile-card */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
 .social-icons {
     display: flex;
     justify-content: center;
     gap: 0.8rem;
     flex-wrap: wrap;
-    margin-bottom: 1rem;
+    margin: 0; /* Loại bỏ margin để dùng gap của profile-card */
 }
 
 .social-icons a {
