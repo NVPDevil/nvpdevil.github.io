@@ -19,30 +19,24 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.95); /* Tăng độ tối gần như hoàn toàn */
     color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
-    font-size: 1.5rem;
+    z-index: 2000; /* Tăng z-index để che phủ nội dung chính */
+    font-size: 1.8rem; /* Tăng kích thước chữ để nổi bật */
     cursor: pointer;
     animation: fadeInOut 2s infinite alternate;
+    transition: opacity 1s ease-in-out; /* Hiệu ứng fade-out mượt mà hơn */
 }
 
 .overlay p {
     animation: pulse 1.5s infinite ease-in-out;
-}
-
-@keyframes fadeInOut {
-    0% { opacity: 0.8; transform: scale(1); }
-    100% { opacity: 1; transform: scale(1.05); }
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.9), 0 0 5px rgba(255, 255, 255, 0.9); /* Tăng độ nổi bật của chữ */
+    padding: 1rem; /* Thêm padding để tránh chồng lấn */
+    background: rgba(0, 0, 0, 0.7); /* Thêm nền mờ cho chữ */
+    border-radius: 10px; /* Bo góc cho chữ */
 }
 
 .container {
@@ -55,6 +49,12 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    opacity: 0.1; /* Làm mờ nội dung chính khi overlay hiển thị */
+    transition: opacity 1s ease-in-out; /* Hiệu ứng fade-in mượt mà hơn */
+}
+
+.container.active {
+    opacity: 1; /* Fade-in khi nhấp vào overlay */
 }
 
 .profile-card {
@@ -217,7 +217,7 @@ h1 {
     border-radius: 50% 60% 50% 60% / 50% 50% 50% 50%;
     opacity: 0.7;
     box-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
-    animation: detailedSnowFall 20s linear infinite;
+    animation: detailedSnowFall 10s linear infinite; /* Tăng tốc độ tuyết rơi */
     max-height: 100vh;
     top: -20px; /* Bắt đầu từ đỉnh */
 }
