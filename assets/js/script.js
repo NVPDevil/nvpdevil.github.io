@@ -74,6 +74,7 @@ const overlay = document.getElementById('audio-overlay');
 const container = document.querySelector('.container');
 const audio = document.getElementById('background-audio');
 const audioControl = document.getElementById('audio-control');
+const audioIcon = audioControl.querySelector('.audio-icon');
 
 overlay.addEventListener('click', () => {
     overlay.classList.add('fade-out');
@@ -92,10 +93,12 @@ overlay.addEventListener('click', () => {
 audioControl.addEventListener('click', () => {
     if (audio.paused) {
         audio.play();
-        audioControl.textContent = '🔊';
+        audioIcon.src = 'https://img.icons8.com/ios-filled/50/000000/speaker.png';
+        audioIcon.alt = 'Bật âm thanh';
     } else {
         audio.pause();
-        audioControl.textContent = '🔇';
+        audioIcon.src = 'https://img.icons8.com/ios-filled/50/000000/mute.png';
+        audioIcon.alt = 'Tắt âm thanh';
     }
 });
 

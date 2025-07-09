@@ -57,7 +57,7 @@ body {
     align-items: center;
     overflow: hidden;
     opacity: 0;
-    transition: opacity 3s ease-in-out;
+    transition: opacity 1.5s ease-in-out;
 }
 
 .container.active {
@@ -293,6 +293,12 @@ h1 {
 
 #audio-control:hover {
     background: rgba(0, 0, 0, 0.9);
+}
+
+.audio-icon {
+    width: 30px;
+    height: 30px;
+    filter: brightness(0) invert(1);
 }
 
 /* Responsive design */
