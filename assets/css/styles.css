@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    height: 100vh; /* Giới hạn chiều cao cố định */
+    height: 100vh;
     width: 100%;
     background: url('https://cdn.discordapp.com/attachments/1109498568655519926/1172793009021145108/HN_Background.png?ex=686ebc5a&is=686d6ada&hm=7d78bfd780518d1d470966972e63cd9c57968ae07cf4e7ba07ecc2de17dba1ef&') no-repeat center center;
     background-size: cover;
@@ -9,7 +9,7 @@ body {
     justify-content: center;
     align-items: center;
     font-family: Arial, sans-serif;
-    overflow: hidden; /* Ngăn cuộn */
+    overflow: hidden;
     position: relative;
 }
 
@@ -27,6 +27,22 @@ body {
     z-index: 1000;
     font-size: 1.5rem;
     cursor: pointer;
+    animation: fadeInOut 2s infinite alternate;
+}
+
+.overlay p {
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0.8; transform: scale(1); }
+    100% { opacity: 1; transform: scale(1.05); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
 }
 
 .container {
@@ -38,21 +54,22 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden; /* Ngăn cuộn */
+    overflow: hidden;
 }
 
 .profile-card {
-    background: rgba(0, 150, 136, 0.9);
-    padding: 2rem;
+    background: linear-gradient(135deg, rgba(0, 150, 136, 0.9), rgba(0, 100, 90, 0.9));
+    padding: 2.5rem;
     border-radius: 20px;
     animation: float 4s ease-in-out infinite;
     width: fit-content;
     min-width: 280px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), 0 0 10px rgba(255, 255, 255, 0.2) inset;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 0 auto;
+    border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 .avatar {
@@ -62,12 +79,14 @@ body {
     margin-bottom: 1.5rem;
     animation: rotate 8s linear infinite;
     object-fit: cover;
+    border: 4px solid rgba(255, 255, 255, 0.5);
 }
 
 h1 {
     color: #fff;
     margin: 1rem 0;
     font-size: 2.2rem;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
 }
 
 .tagline {
@@ -75,6 +94,7 @@ h1 {
     font-style: italic;
     margin-bottom: 1rem;
     font-size: 1.1rem;
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.2);
 }
 
 .details-container {
@@ -96,6 +116,7 @@ h1 {
     text-align: center;
     word-wrap: break-word;
     max-width: 30%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .social-icons {
@@ -164,7 +185,6 @@ h1 {
     opacity: 0.7;
     box-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
     animation: detailedSnowFall linear infinite;
-    /* Giới hạn chiều cao để tránh cuộn */
     max-height: 100vh;
 }
 
