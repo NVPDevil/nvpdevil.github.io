@@ -61,8 +61,8 @@ const backgroundConfig = {
         alt: 'Hình nền động'
     },
     video: {
-        src: 'assets/videos/background.mp4',
-        fallback: 'assets/images/4.mp4'
+        src: 'assets/videos/4.mp4',
+        fallback: 'assets/images/peter.webp'
     }
 };
 
