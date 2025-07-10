@@ -53,7 +53,7 @@ window.addEventListener('resize', debounce(() => {
 let backgroundType = 'video';
 const backgroundConfig = {
     image: {
-        src: 'assets/images/background.webp',
+        src: 'assets/images/peter.webp',
         alt: 'Hình nền tĩnh'
     },
     gif: {
@@ -62,7 +62,7 @@ const backgroundConfig = {
     },
     video: {
         src: 'assets/videos/background.mp4',
-        fallback: 'assets/images/background.webp'
+        fallback: 'assets/images/4.mp4'
     }
 };
 
