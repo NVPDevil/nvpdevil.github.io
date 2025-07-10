@@ -4,20 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Hồ sơ cá nhân của NVP Devil - Nguyễn Văn Phi, một lập trình viên từ Việt Nam.">
+    <meta name="keywords" content="NVP Devil, Nguyễn Văn Phi, lập trình viên, Việt Nam, hồ sơ cá nhân">
+    <meta name="author" content="Nguyễn Văn Phi">
+    <meta name="robots" content="index, follow">
     <meta property="og:title" content="NVP Devil Profile">
     <meta property="og:description" content="Khám phá hồ sơ cá nhân của NVP Devil, bao gồm các liên kết mạng xã hội và thông tin liên hệ.">
-    <meta property="og:image" content="assets/images/nvpdevil.png">
+    <meta property="og:image" content="assets/images/nvpdevil.webp">
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://your-website-url.com">
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        img-src 'self' data:;
+        style-src 'self' 'unsafe-inline';
+        script-src 'self';
+        media-src 'self';
+        connect-src 'self' https://api.countapi.xyz;
+    ">
     <title>NVP Devil Profile</title>
-    <link rel="icon" href="assets/images/nvpdevil.png">
+    <link rel="icon" href="assets/images/nvpdevil.webp">
     <link rel="stylesheet" href="assets/css/styles.css">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Nguyễn Văn Phi",
+        "alternateName": "NVP Devil",
+        "nationality": "Vietnam",
+        "url": "https://your-website-url.com",
+        "sameAs": [
+            "https://www.facebook.com/nvpdevil",
+            "https://www.instagram.com/nvpdevil/",
+            "https://github.com/NVPDevil",
+            "https://www.youtube.com/@nvpdevil2005",
+            "https://www.tiktok.com/@nvpdevil"
+        ]
+    }
+    </script>
 </head>
 <body>
-    <div class="overlay" id="audio-overlay">
-        <p>Nhấn bất kỳ đâu để bắt đầu!</p>
+    <div id="background-container"></div>
+    <canvas id="snow-canvas"></canvas>
+    <div class="overlay" id="audio-overlay" tabindex="0">
+        <p>Nhấn bất kỳ đâu hoặc phím Space/Enter để bắt đầu!</p>
     </div>
-    <div class="container">
-        <div class="profile-card">
-            <img src="assets/images/nvpdevil.png" alt="Avatar của NVP Devil" class="avatar">
+    <div id="loading-spinner" class="spinner"></div>
+    <main class="container">
+        <section class="placeholder-card" tabindex="0">
+            <p class="placeholder-text">Nội dung sắp ra mắt</p>
+        </section>
+        <section class="profile-card" tabindex="0">
+            <img src="assets/images/nvpdevil.webp" alt="Avatar của NVP Devil" class="avatar" loading="lazy">
             <h1>NVP Devil</h1>
             <p class="tagline">Call me Pii</p>
             <hr class="custom-hr">
@@ -28,44 +64,82 @@
             </div>
             <hr class="custom-hr">
             <div class="social-icons">
-                <a href="https://www.facebook.com/nvpdevil" data-tooltip="nvpdevil" data-link="https://www.facebook.com/nvpdevil" aria-label="Facebook của NVP Devil">
-                    <img src="https://img.icons8.com/ios-filled/50/000000/facebook.png" alt="Biểu tượng Facebook">
+                <a href="https://www.facebook.com/nvpdevil" data-tooltip="nvpdevil" data-link="https://www.facebook.com/nvpdevil" aria-label="Facebook của NVP Devil" aria-describedby="facebook-tooltip">
+                    <img src="assets/images/icon/facebook.png" alt="Biểu tượng Facebook" loading="lazy">
+                    <span id="facebook-tooltip" class="visually-hidden">nvpdevil</span>
                 </a>
-                <a href="https://www.instagram.com/nvpdevil/" data-tooltip="nvpdevil" data-link="https://www.instagram.com/nvpdevil/" aria-label="Instagram của NVP Devil">
-                    <img src="https://img.icons8.com/ios-filled/50/000000/instagram.png" alt="Biểu tượng Instagram">
+                <a href="https://www.instagram.com/nvpdevil/" data-tooltip="nvpdevil" data-link="https://www.instagram.com/nvpdevil/" aria-label="Instagram của NVP Devil" aria-describedby="instagram-tooltip">
+                    <img src="assets/images/icon/instagram.png" alt="Biểu tượng Instagram" loading="lazy">
+                    <span id="instagram-tooltip" class="visually-hidden">nvpdevil</span>
                 </a>
-                <a href="https://github.com/NVPDevil" data-tooltip="NVPDevil" data-link="https://github.com/NVPDevil" aria-label="GitHub của NVP Devil">
-                    <img src="https://img.icons8.com/ios-filled/50/000000/github.png" alt="Biểu tượng GitHub">
+                <a href="https://github.com/NVPDevil" data-tooltip="NVPDevil" data-link="https://github.com/NVPDevil" aria-label="GitHub của NVP Devil" aria-describedby="github-tooltip">
+                    <img src="assets/images/icon/github.png" alt="Biểu tượng GitHub" loading="lazy">
+                    <span id="github-tooltip" class="visually-hidden">NVPDevil</span>
                 </a>
-                <a href="https://www.youtube.com/@nvpdevil2005" data-tooltip="@nvpdevil2005" data-link="https://www.youtube.com/@nvpdevil2005" aria-label="YouTube của NVP Devil">
-                    <img src="https://img.icons8.com/ios-filled/50/000000/youtube.png" alt="Biểu tượng YouTube">
+                <a href="https://www.youtube.com/@nvpdevil2005" data-tooltip="@nvpdevil2005" data-link="https://www.youtube.com/@nvpdevil2005" aria-label="YouTube của NVP Devil" aria-describedby="youtube-tooltip">
+                    <img src="assets/images/icon/youtube.png" alt="Biểu tượng YouTube" loading="lazy">
+                    <span id="youtube-tooltip" class="visually-hidden">@nvpdevil2005</span>
                 </a>
-                <a href="#" data-tooltip="Kiều Nga#2005" aria-label="ID Riot Games của NVP Devil">
-                    <img src="https://img.icons8.com/ios-filled/50/000000/riot-games.png" alt="Biểu tượng Riot Games">
-                </a>
-                <a href="#" data-tooltip="Kiều Nga#2005" aria-label="ID League of Legends của NVP Devil">
-                    <img src="https://img.icons8.com/ios-filled/50/000000/league-of-legends.png" alt="Biểu tượng League of Legends">
-                </a>
-                <a href="#" data-tooltip="Kiều Nga#2005" aria-label="ID Valorant của NVP Devil">
-                    <img src="https://img.icons8.com/ios-filled/50/000000/valorant.png" alt="Biểu tượng Valorant">
-                </a>
-                <a href="#" data-tooltip="@nvpdevil" aria-label="ID Discord của NVP Devil">
-                    <img src="https://img.icons8.com/ios-filled/50/000000/discord.png" alt="Biểu tượng Discord">
-                </a>
-                <a href="https://www.tiktok.com/@nvpdevil" data-tooltip="nvpdevil" data-link="https://www.tiktok.com/@nvpdevil" aria-label="TikTok của NVP Devil">
-                    <img src="https://img.icons8.com/ios-filled/50/000000/tiktok.png" alt="Biểu tượng TikTok">
+                <button data-tooltip="Kiều Nga#2005" aria-label="Sao chép ID Riot Games" aria-describedby="riot-tooltip">
+                    <img src="assets/images/icon/riot-games.png" alt="Biểu tượng Riot Games" loading="lazy">
+                    <span id="riot-tooltip" class="visually-hidden">Kiều Nga#2005</span>
+                </button>
+                <button data-tooltip="Kiều Nga#2005" aria-label="Sao chép ID League of Legends" aria-describedby="lol-tooltip">
+                    <img src="assets/images/icon/league-of-legends.png" alt="Biểu tượng League of Legends" loading="lazy">
+                    <span id="lol-tooltip" class="visually-hidden">Kiều Nga#2005</span>
+                </button>
+                <button data-tooltip="Kiều Nga#2005" aria-label="Sao chép ID Valorant" aria-describedby="valorant-tooltip">
+                    <img src="assets/images/icon/valorant.png" alt="Biểu tượng Valorant" loading="lazy">
+                    <span id="valorant-tooltip" class="visually-hidden">Kiều Nga#2005</span>
+                </button>
+                <button data-tooltip="@nvpdevil" aria-label="Sao chép ID Discord" aria-describedby="discord-tooltip">
+                    <img src="assets/images/icon/discord.png" alt="Biểu tượng Discord" loading="lazy">
+                    <span id="discord-tooltip" class="visually-hidden">@nvpdevil</span>
+                </button>
+                <a href="https://www.tiktok.com/@nvpdevil" data-tooltip="nvpdevil" data-link="https://www.tiktok.com/@nvpdevil" aria-label="TikTok của NVP Devil" aria-describedby="tiktok-tooltip">
+                    <img src="assets/images/icon/tiktok.png" alt="Biểu tượng TikTok" loading="lazy">
+                    <span id="tiktok-tooltip" class="visually-hidden">nvpdevil</span>
                 </a>
             </div>
-        </div>
-    </div>
+            <hr class="custom-hr">
+            <div id="clock" class="clock"></div>
+            <div class="visitor-count">Lượt truy cập: <span id="visitor-counter">0</span></div>
+        </section>
+        <section class="skills-card" tabindex="0">
+            <h2>Kỹ năng</h2>
+            <div class="skill-list">
+                <div class="skill" data-tooltip="Ngôn ngữ đánh dấu chuẩn cho web">HTML</div>
+                <div class="skill" data-tooltip="Ngôn ngữ tạo kiểu giao diện">CSS</div>
+                <div class="skill" data-tooltip="Ngôn ngữ lập trình cho tương tác">JavaScript</div>
+                <div class="skill" data-tooltip="Ngôn ngữ lập trình phía server">PHP</div>
+            </div>
+        </section>
+    </main>
 
-    <audio id="background-audio" loop>
+    <audio id="background-audio" loop preload="none">
         <source src="assets/audio/Hào.mp3" type="audio/mp3">
         <p>Trình duyệt của bạn không hỗ trợ phát âm thanh. Vui lòng cập nhật hoặc thử trình duyệt khác.</p>
     </audio>
+    <audio id="click-sound" preload="none">
+        <source src="assets/audio/click/ahh2.mp3" type="audio/mp3">
+    </audio>
 
-    <button id="audio-control" aria-label="Bật/tắt âm thanh">
-        <img src="https://img.icons8.com/ios-filled/50/000000/speaker.png" alt="Tắt âm thanh" class="audio-icon">
+    <div class="right-controls">
+        <div class="audio-control-container">
+            <button id="audio-control" aria-label="Bật/tắt âm thanh" aria-pressed="false">
+                <img src="assets/images/icon/speaker.png" alt="Bật âm thanh" class="audio-icon" loading="lazy">
+            </button>
+            <input type="range" id="volume-control" min="0" max="1" step="0.01" value="1" aria-label="Điều chỉnh âm lượng">
+        </div>
+        <button id="toggle-snow" aria-label="Bật/tắt hiệu ứng tuyết">
+            <img src="assets/images/icon/snowflake.png" alt="Biểu tượng bật hiệu ứng tuyết" class="snow-icon" loading="lazy">
+        </button>
+        <button id="share-button" aria-label="Chia sẻ trang hồ sơ">
+            <img src="assets/images/icon/share.png" alt="Biểu tượng chia sẻ" class="snow-icon" loading="lazy">
+        </button>
+    </div>
+    <button id="bg-toggle" aria-label="Thay đổi nền">
+        <img src="assets/images/icon/change.png" alt="Biểu tượng thay đổi chế độ nền" class="snow-icon" loading="lazy">
     </button>
 
     <script src="assets/js/script.js"></script>

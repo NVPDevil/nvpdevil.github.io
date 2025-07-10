@@ -4,14 +4,283 @@ body {
     padding: 0;
     height: 100vh;
     width: 100%;
-    background: url('https://cdn.discordapp.com/attachments/934360282615132172/1322917995454136330/411287948_765324632291582_936493720570775181_n.png?ex=686f1624&is=686dc4a4&hm=6222ea19ad49bddc1148cc3c34d238ce058bbead59229f3fe3df0c58886463d5&') no-repeat center center;
-    background-size: cover;
+    background: #000;
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: Arial, sans-serif;
     overflow: hidden;
     position: relative;
+}
+
+/* Container chính */
+.container {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px; /* Tăng khoảng cách cho đều */
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.container.active {
+    opacity: 1;
+}
+
+/* Thẻ profile, placeholder và skills */
+.profile-card {
+    background: linear-gradient(145deg, rgba(0, 150, 136, 0.95), rgba(0, 100, 90, 0.85));
+    padding: 2rem;
+    border-radius: 30px;
+    animation: float 6s ease-in-out infinite; /* Tăng thời gian để mượt hơn */
+    width: auto;
+    min-width: 400px;
+    max-width: 600px; /* Tăng max-width để chứa 10 icon */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 25px rgba(255, 255, 255, 0.3) inset;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    border: 4px solid rgba(255, 255, 255, 0.6);
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+    gap: 1rem; /* Tăng gap cho đồng đều */
+}
+
+.profile-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 255, 255, 0.4) inset;
+    background: linear-gradient(145deg, rgba(0, 170, 150, 0.95), rgba(0, 120, 100, 0.85));
+}
+
+.placeholder-card, .skills-card {
+    background: linear-gradient(135deg, rgba(0, 150, 136, 0.9), rgba(0, 100, 90, 0.9));
+    padding: 1.5rem; /* Đồng bộ padding */
+    border-radius: 20px;
+    animation: float 6s ease-in-out infinite; /* Đồng bộ với profile-card */
+    width: 220px; /* Tăng nhẹ kích thước cho cân đối */
+    height: auto;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 255, 255, 0.3) inset;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    border: 3px solid rgba(255, 255, 255, 0.6);
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+    gap: 0.8rem;
+}
+
+.placeholder-card:hover, .skills-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 255, 255, 0.5) inset;
+}
+
+/* Avatar */
+.profile-card .avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    animation: rotate 12s linear infinite; /* Tăng thời gian để mượt hơn */
+    object-fit: cover;
+    border: 6px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    margin-bottom: 0.5rem;
+}
+
+.profile-card .avatar:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.7);
+}
+
+/* Tiêu đề, tagline */
+.profile-card h1 {
+    color: #fff;
+    margin: 0.3rem 0;
+    font-size: 2.5rem;
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+    text-align: center;
+}
+
+.profile-card .tagline {
+    color: #e0f7f4;
+    font-style: italic;
+    margin: 0.2rem 0;
+    font-size: 1.2rem;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    text-align: center;
+}
+
+/* Chi tiết */
+.details-container {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem; /* Tăng gap cho đều */
+    margin: 0.2rem 0;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.detail-block {
+    background: rgba(255, 255, 255, 0.25);
+    padding: 0.6rem 1rem;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 0.9rem;
+    min-width: 90px; /* Tăng min-width cho đồng đều */
+    flex: 1 1 auto;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.detail-block:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.35);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+}
+
+/* Biểu tượng mạng xã hội */
+.profile-card .social-icons {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr); /* Tối đa 10 cột trên cùng một hàng */
+    justify-content: center; /* Căn giữa các cột */
+    align-items: center;
+    gap: 0.5rem; /* Tăng khoảng cách để đảm bảo cách đều */
+    margin: 0.5rem auto;
+    max-width: 100%;
+    padding: 0; /* Loại bỏ padding để tránh ảnh hưởng bố cục */
+}
+
+.profile-card .social-icons a, .profile-card .social-icons button {
+    position: relative;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px; /* Đảm bảo kích thước cố định phù hợp với 10 cột */
+    height: 60px;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0; /* Loại bỏ margin ẩn */
+    transition: transform 0.4s ease;
+}
+
+.profile-card .social-icons img {
+    width: 36px; /* Giữ nguyên kích thước icon */
+    height: 36px;
+    filter: brightness(0) invert(1);
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.profile-card .social-icons a:hover img, .profile-card .social-icons button:hover img {
+    transform: scale(1.2);
+    filter: brightness(0) invert(1) drop-shadow(0 0 12px #00c4b4);
+}
+
+/* Clock và Visitor counter */
+.profile-card .clock,
+.profile-card .visitor-count {
+    background: rgba(255, 255, 255, 0.3);
+    padding: 0.6rem 1rem;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 0.9rem;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    transition: transform 0.4s ease, background 0.4s ease, box-shadow 0.4s ease;
+    text-align: center;
+    margin: 0.3rem auto;
+    width: 80%; /* Đảm bảo đồng đều */
+}
+
+.profile-card .clock:hover,
+.profile-card .visitor-count:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.4);
+}
+
+/* Thẻ placeholder */
+.placeholder-card .placeholder-text {
+    color: #fff;
+    font-size: 0.9rem;
+    text-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
+    text-align: center;
+}
+
+/* Thẻ kỹ năng */
+.skills-card h2 {
+    font-size: 1.3rem;
+    margin-bottom: 0.6rem;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    text-align: center;
+}
+
+.skill-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem; /* Tăng gap */
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+
+.skill {
+    background: rgba(255, 255, 255, 0.25);
+    padding: 0.6rem 1rem;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 0.9rem;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.35);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+}
+
+/* Container nền */
+#background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    transition: opacity 0.5s ease; /* Thêm transition */
+}
+
+#background-container.changing {
+    opacity: 0; /* Hiệu ứng fade khi thay đổi */
+}
+
+#background-container img,
+#background-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    background: #000;
+}
+
+/* Canvas tuyết rơi */
+#snow-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
 }
 
 /* Lớp phủ khi tải trang */
@@ -24,6 +293,7 @@ body {
     background: rgba(0, 0, 0, 0.95);
     color: #fff;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 2000;
@@ -45,150 +315,45 @@ body {
     border-radius: 10px;
 }
 
-/* Container chính */
-.container {
-    text-align: center;
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    opacity: 0;
-    transition: opacity 1.5s ease-in-out;
-}
-
-.container.active {
-    opacity: 1;
-}
-
-/* Thẻ profile */
-.profile-card {
-    background: linear-gradient(135deg, rgba(0, 150, 136, 0.9), rgba(0, 100, 90, 0.9));
-    padding: 2.5rem;
-    border-radius: 25px;
-    animation: float 4s ease-in-out infinite;
-    width: fit-content;
-    min-width: 280px;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 255, 255, 0.4) inset;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 auto;
-    border: 3px solid rgba(255, 255, 255, 0.5);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    gap: 1.5rem;
-}
-
-.profile-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), 0 0 25px rgba(255, 255, 255, 0.5) inset;
-}
-
-/* Avatar */
-.avatar {
-    width: 140px;
-    height: 140px;
+/* Loading spinner */
+.spinner {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    border: 4px solid #fff;
+    border-top: 4px solid #009688;
     border-radius: 50%;
-    animation: rotate 8s linear infinite;
-    object-fit: cover;
-    border: 5px solid rgba(255, 255, 255, 0.6);
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: spin 1s linear infinite;
+    z-index: 1002;
 }
 
-.avatar:hover {
-    transform: rotate(360deg) scale(1.1);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+.spinner.active {
+    display: block;
 }
 
-/* Tiêu đề và tagline */
-h1 {
-    color: #fff;
-    margin: 0;
-    font-size: 2.2rem;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-    animation: pulseText 2s infinite alternate;
-}
-
-.tagline {
-    color: #fff;
-    font-style: italic;
-    margin: 0;
-    font-size: 1.1rem;
-    text-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
-}
-
-/* Chi tiết */
-.details-container {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin: 0;
-    flex-wrap: wrap;
-}
-
-.detail-block {
-    background: rgba(255, 255, 255, 0.25);
-    padding: 0.6rem 1rem;
-    border-radius: 10px;
-    color: #fff;
-    font-size: 0.9rem;
-    min-width: 90px;
-    flex: 1 1 auto;
-    text-align: center;
-    word-wrap: break-word;
-    max-width: 30%;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
-}
-
-.detail-block:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.35);
-    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 /* Đường kẻ ngang */
-.custom-hr {
-    width: 80%;
+.profile-card .custom-hr {
+    width: 85%;
     border: 0;
     height: 2px;
-    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
-    margin: 0;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0));
+    margin: 0.5rem auto;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
 }
 
-/* Biểu tượng mạng xã hội */
-.social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 0.8rem;
-    flex-wrap: wrap;
-    margin: 0;
-}
-
-.social-icons a {
-    position: relative;
-    text-decoration: none;
-    cursor: pointer;
-    display: inline-block;
-    width: 44px;
-    height: 44px;
-}
-
-.social-icons img {
-    width: 35px;
-    height: 35px;
-    filter: brightness(0) invert(1);
-    transition: filter 0.3s ease, transform 0.3s ease;
-}
-
-.social-icons img:hover {
-    transform: translateY(-5px);
-    filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(255, 255, 255, 0.9));
+/* Xóa đường viền focus */
+.social-icons a:focus, .social-icons button:focus,
+.right-controls button:focus, #bg-toggle:focus,
+.skill:focus {
+    outline: none;
 }
 
 /* Tooltip */
@@ -196,7 +361,7 @@ h1 {
     position: relative;
 }
 
-[data-tooltip]:after {
+[data-tooltip]:hover:after {
     content: attr(data-tooltip);
     position: absolute;
     bottom: 100%;
@@ -209,44 +374,239 @@ h1 {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     font-size: 0.8rem;
     white-space: nowrap;
-    opacity: 0;
-    visibility: hidden;
+    opacity: 1;
+    visibility: visible;
     transition: opacity 0.3s ease, transform 0.3s ease;
     z-index: 10;
     margin-bottom: 0.4rem;
 }
 
-[data-tooltip]:hover:after,
-[data-tooltip].active:after {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(-8px);
+[data-tooltip]:after {
+    opacity: 0;
+    visibility: hidden;
 }
 
-/* Hiệu ứng tuyết rơi */
-.snowflake {
+/* Visually hidden cho accessibility */
+.visually-hidden {
     position: absolute;
-    width: 12px;
-    height: 12px;
-    background: radial-gradient(circle, #ffffff, #e0e0e0, #c0c0c0, #a0a0a0);
-    border-radius: 50% 60% 50% 60% / 50% 50% 50% 50%;
-    opacity: 0.7;
-    box-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
-    animation: detailedSnowFall 10s linear infinite;
-    max-height: 100vh;
-    top: -20px;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
 }
 
-@keyframes detailedSnowFall {
-    0% { transform: translateY(0) rotate(0deg) scale(0.7); opacity: 0.7; }
-    20% { opacity: 0.9; }
-    50% { transform: translateY(40vh) rotate(180deg) scale(1.1); }
-    100% { transform: translateY(100vh) rotate(360deg) scale(0.7); opacity: 0.3; }
+/* Container cho các nút bên phải */
+.right-controls {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    z-index: 1001;
+    align-items: center;
 }
 
+/* Thanh điều chỉnh âm lượng */
+.audio-control-container {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: center;
+}
+
+#volume-control {
+    width: 0;
+    opacity: 0;
+    position: absolute;
+    transition: width 0.3s ease, opacity 0.3s ease;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 5px;
+    padding: 2px;
+}
+
+.audio-control-container:hover #volume-control,
+.audio-control-container.active #volume-control {
+    width: 100px;
+    opacity: 1;
+    margin-right: 30px;
+    left: -130px;
+}
+
+.right-controls button, #bg-toggle {
+    position: relative;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    background: none;
+    border: none;
+    padding: 0;
+    transition: transform 0.3s ease;
+}
+
+.audio-icon, .snow-icon {
+    width: 35px;
+    height: 35px;
+    max-width: 35px;
+    max-height: 35px;
+    filter: brightness(0) invert(1);
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.right-controls button:hover .audio-icon, .right-controls button:hover .snow-icon, 
+#bg-toggle:hover .snow-icon {
+    transform: scale(1.2);
+    filter: brightness(0) invert(1) drop-shadow(0 0 10px #009688);
+}
+
+/* Nút thay đổi nền */
+#bg-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 44px;
+    height: 44px;
+    z-index: 1001;
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+    .container {
+        flex-direction: row;
+        gap: 12px;
+    }
+    .profile-card {
+        max-width: 90%;
+    }
+    .placeholder-card, .skills-card {
+        max-width: 90%;
+        width: 200px;
+    }
+    .social-icons {
+        grid-template-columns: repeat(5, 1fr); /* Giảm xuống 5 cột trên màn hình trung bình */
+        gap: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+    }
+    .profile-card, .placeholder-card, .skills-card {
+        max-width: 95%;
+        padding: 1.2rem;
+    }
+    .profile-card .avatar {
+        width: 120px;
+        height: 120px;
+    }
+    .profile-card h1 {
+        font-size: 2rem;
+    }
+    .profile-card .tagline {
+        font-size: 1.1rem;
+    }
+    .social-icons {
+        grid-template-columns: repeat(3, 1fr); /* Giảm xuống 3 cột trên màn hình nhỏ */
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-card, .placeholder-card, .skills-card {
+        padding: 1rem;
+        max-width: 95%;
+    }
+    .profile-card .avatar {
+        width: 100px;
+        height: 100px;
+    }
+    .profile-card h1 {
+        font-size: 1.5rem;
+    }
+    .profile-card .tagline {
+        font-size: 0.9rem;
+    }
+    .details-container, .skill-list {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .detail-block, .skill {
+        max-width: 100%;
+    }
+    .social-icons {
+        grid-template-columns: repeat(2, 1fr); /* 2 cột trên màn hình rất nhỏ */
+        gap: 0.8rem;
+    }
+}
+
+/* Thông báo chặn thiết bị di động */
+.block-message {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 1rem;
+    z-index: 9999;
+}
+
+.block-message h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.block-message p {
+    font-size: 1.2rem;
+    text-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
+}
+
+/* Thông báo lỗi âm thanh */
+.error-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 0, 0, 0.7);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 5px;
+    z-index: 1000;
+    font-size: 1rem;
+}
+
+.error-message button {
+    background: #fff;
+    color: #000;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-left: 8px;
+}
+
+/* Animation keyframes */
 @keyframes float {
     0% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
+    50% { transform: translateY(-12px); } /* Tăng độ cao để rõ ràng hơn */
     100% { transform: translateY(0); }
 }
 
@@ -255,78 +615,15 @@ h1 {
     to { transform: rotate(360deg); }
 }
 
-@keyframes pulseText {
-    0% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); }
-    100% { text-shadow: 0 0 15px rgba(255, 255, 255, 0.8); }
-}
-
-@keyframes fadeInOut {
-    0% { opacity: 0.8; }
-    100% { opacity: 1; }
-}
-
 @keyframes pulse {
     0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
+    50% { transform: scale(1.05); } /* Giảm biên độ để mượt hơn */
     100% { transform: scale(1); }
 }
 
-/* Nút điều khiển âm thanh */
-#audio-control {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    width: 40px;
-    height: 40px;
-    background: rgba(0, 0, 0, 0.7);
-    color: #fff;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 1.5rem;
-    z-index: 1000;
-    transition: background 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#audio-control:hover {
-    background: rgba(0, 0, 0, 0.9);
-}
-
-.audio-icon {
-    width: 30px;
-    height: 30px;
-    filter: brightness(0) invert(1);
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-    .profile-card {
-        padding: 1.5rem;
-    }
-
-    .avatar {
-        width: 100px;
-        height: 100px;
-    }
-
-    h1 {
-        font-size: 1.8rem;
-    }
-
-    .tagline {
-        font-size: 1rem;
-    }
-
-    .social-icons img {
-        width: 30px;
-        height: 30px;
-    }
-
-    .social-icons a {
-        width: 40px;
-        height: 40px;
-    }
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
 }
